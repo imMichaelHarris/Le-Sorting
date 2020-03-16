@@ -23,13 +23,29 @@ def selection_sort( arr ):
 
     return arr
 
-selection_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7])
+# selection_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7])
 
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort( arr ):
+    # Get the first element and compare with the next element
+    # Have a swap tracker and every loop if you swap go through the process again
+    # IF no swaps its sorted
+    sorting = True
+    while sorting:
+        swaps = 0
+        for i in range(0, len(arr) -1):
+            og = arr[i]
+            if arr[i+1] < arr[i]:
+                arr[i] = arr[i+1]
+                arr[i + 1] = og
+                swaps += 1
+
+        if swaps == 0:
+            sorting = False
 
     return arr
 
+print(bubble_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7]))
 
 # STRETCH: implement the Count Sort function below
 def count_sort( arr, maximum=-1 ):
