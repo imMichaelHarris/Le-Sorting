@@ -16,17 +16,57 @@ def merge( arrA, arrB ):
     arrA_index = 0
     arrB_index = 0
     merged_arr_index = 0
-    print(f"A- {arrA_index}, B - {arrB_index}")
-    print(arrA, arrB)
-    while sorting:
-        if arrA[arrA_index] <= arrB[arrB_index]:
-            merged_arr[merged_arr_index] = arrA[arrA_index]
-            merged_arr_index += 1
-            arrA_index += 1
-        elif arrA[arrA_index] > arrB[arrB_index]:
-            merged_arr[merged_arr_index] = arrB[arrB_index]
-            merged_arr_index += 1
-            arrB_index += 1
+    
+    subA = 0
+    subB = 0
+    for i in range(elements):
+        print("if", i, arrA, arrB)
+        if len(arrA) == subA:
+             merged_arr[i] = arrB[subB]
+             subB += 1
+        elif len(arrB) == subB:
+             merged_arr[i] = arrA[subA]
+             subA += 1
+        elif arrA[subA] >= arrB[subB]:
+            print(f"if statement")
+            merged_arr[i] = arrB[subB]
+            subB += 1
+        elif arrB[subB] >= arrA[subA]:
+            # print(f"elif {subB}, {subA}")
+            merged_arr[i] = arrA[subA]
+            subA += 1
+            print(f"2nd elif {subB}, {subA}")
+
+            
+        else:
+            print("no", arrA[0], arrB[0])
+    # while sorting:
+    #     print("pppp")
+    #     print("now")
+    #     print(f"A- {arrA_index}, B - {arrB_index}")
+    #     print(arrA, arrB, merged_arr)
+    #     if arrA_index == len(arrA):
+    #         print("here")
+    #         merged_arr[merged_arr_index] = arrB[arrB_index]
+    #         merged_arr_index += 1
+    #         arrB_index += 1
+    #     elif arrB_index == len(arrB):
+    #         print("hi")
+    #         merged_arr[merged_arr_index] = arrA[arrA_index]
+    #         merged_arr_index += 1
+    #         arrA_index += 1
+    #     elif arrA[arrA_index] <= arrB[arrB_index]:
+    #         merged_arr[merged_arr_index] = arrA[arrA_index]
+    #         merged_arr_index += 1
+    #         arrA_index += 1
+    #         print("boo")
+    #     elif arrA[arrA_index] > arrB[arrB_index]:
+    #         merged_arr[merged_arr_index] = arrB[arrB_index]
+    #         merged_arr_index += 1
+    #         arrB_index += 1
+    #     else:
+    #         sorting = False
+
 
     print(merged_arr)
     
@@ -40,11 +80,13 @@ def merge_sort( arr ):
     if len(arr) <= 1:
         return arr
 
-    half = len(arr) // 2
-    left = arr[ :half]
-    right = arr[half:]
+    half = int(len(arr) / 2)
+    leftArr = arr[ :half]
+    rightArr = arr[half:]
 
-    return merge(merge_sort(left), merge_sort(right))
+    left = merge_sort(leftArr)
+    right = merge_sort(rightArr)
+    return merge(left, right)
 
 print(merge_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7]))
 
